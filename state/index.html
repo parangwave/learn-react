@@ -15,11 +15,16 @@
     const App = () => {
       const [counter, setCounter] = React.useState(0);
       // console.log(data);  // undefined = initial val, func() = func modifying data
+      const onClick = () => {
+        setCounter(counter+1);  // val update && re-render
+        // counter++;
+        // console.log(counter);
+      };
 
       return (
         <div>
-          <h3>Total Clicks: 0</h3>
-          <button>Click me</button>
+          <h3>Total Clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
         </div>
       );
     };
