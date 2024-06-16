@@ -12,15 +12,27 @@
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script>
-      const root = document.getElementById("root");
-      const span = React.createElement(
-          "span",
-          { id: "sexy-span", style: {color: "tomato"} }, // props
-          "hello I'm a span"                             // content
-        );
-        // ReactDOM.render() = react element를 가지고 HTML로 만들어 배치 = 사용자에게 보여줌
-        ReactDOM.render(span, root);
-        // ReactJS는 JS -> HTML => ReactJS는 업데이트가 필요한 element를 업데이트 할 것임
-        // => ⭐ ReactJS는 유저에게 보여질 내용을 제어할 수 있다는 뜻
+    const root = document.getElementById("root");
+    const h3 = React.createElement(
+      "h3",
+      {
+        onMouseEnter: () => console.log("mouse enter"),
+      },  // props
+      "hello I'm a span" // content
+    );
+    // ReactDOM.render() = react element를 가지고 HTML로 만들어 배치 = 사용자에게 보여줌
+    const btn = React.createElement(
+      "button",
+      {
+        // on + event = eventListener
+        // addEventListener를 반복하는 것 대신, property에 event를 등록
+        onClick: () => console.log("im clicked"),
+      },
+      "Click me"
+    );
+    const container = React.createElement("div", null, [h3, btn]);
+    // ReactJS는 JS -> HTML => ReactJS는 업데이트가 필요한 element를 업데이트 할 것임
+    // => ⭐ ReactJS는 유저에게 보여질 내용을 제어할 수 있다는 뜻
+    ReactDOM.render(container, root);
   </script>
 </html>
