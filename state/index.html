@@ -11,25 +11,19 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
 
-    function countUp() {
-      counter++;
-      render();
-    }
+    const App = () => {
+      const [counter, setCounter] = React.useState(0);
+      // console.log(data);  // undefined = initial val, func() = func modifying data
 
-    function render() {
-      // re-rendering -> 이 comp도 바뀐 데이터를 가지고 재생성될 것
-      ReactDOM.render(<Container />, root);
-    }
+      return (
+        <div>
+          <h3>Total Clicks: 0</h3>
+          <button>Click me</button>
+        </div>
+      );
+    };
 
-    const Container = () => (
-      <div>
-        <h3>Total Clicks: {counter}</h3>
-        <button onClick={countUp}>Click me</button>
-      </div>
-    );
-
-    render();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
