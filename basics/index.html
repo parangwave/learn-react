@@ -14,7 +14,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    const Title = (
+    const Title = () => (
       <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
         Hello I'm a title
       </h3>
@@ -28,7 +28,7 @@
     // );
     // ReactDOM.render() = react element를 가지고 HTML로 만들어 배치 = 사용자에게 보여줌
 
-    const Button = (
+    const Button = () => (
       <button
         style={{ backgroundColor: "tomato" }}
         onClick={() => console.log("clicked")}
@@ -45,9 +45,18 @@
     //   },
     //   "Click me"
     // );
-    const container = React.createElement("div", null, [Title, Button]);
+    
+    // 컴포넌트의 첫 글자는 항상 대문자!
+    const Container = () => (
+      <div>
+        <button>Hi</button>
+        <Title />
+        <Button />
+      </div>
+    );
+    
     // ReactJS는 JS -> HTML => ReactJS는 업데이트가 필요한 element를 업데이트 할 것임
     // => ⭐ ReactJS는 유저에게 보여질 내용을 제어할 수 있다는 뜻
-    ReactDOM.render(container, root);
+    ReactDOM.render(<Container/>, root);
   </script>
 </html>
