@@ -12,7 +12,7 @@
   <script type="text/babel">
     function App() {
       const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
+      const [inverted, setInverted] = React.useState(false);
 
       const onChange = (event) => {
         // console.log(event.target.value);
@@ -22,9 +22,9 @@
       };
 
       const reset = () => setAmount(0);
-      const onFlip = () => {
+      const onInverted = () => {
         reset();
-        setFlipped((current) => !current);
+        setInverted((current) => !current);
       };
 
       return (
@@ -32,24 +32,24 @@
           <h1 className="hi">Super Converter</h1>
           <label htmlFor="minutes">Minutes</label>
           <input
-            value={flipped ? amount * 60 : amount}
+            value={inverted ? amount * 60 : amount}
             id="minutes"
             type="number"
             placeholder="Minutes"
             onChange={onChange}
-            disabled={flipped}
+            disabled={inverted}
           />
           <label htmlFor="hours">Hours</label>
           <input
-            value={flipped ? amount : Math.round(amount / 60)}
+            value={inverted ? amount : Math.round(amount / 60)}
             id="hours"
             type="number"
             placeholder="Hours"
             onChange={onChange}
-            disabled={!flipped}
+            disabled={!inverted}
           />
           <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>Flip</button>
+          <button onClick={onInverted}>{inverted ? "Turn back": "Invert"}</button>
         </div>
       );
     }
