@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>After React</title>
+    <title>Units Converter</title>
   </head>
   <body>
     <div id="root"></div>
@@ -10,14 +10,13 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function App() {
+
+    // mins to hours
+    function MinutesToHours() {
       const [amount, setAmount] = React.useState(0);
       const [inverted, setInverted] = React.useState(false);
 
       const onChange = (event) => {
-        // console.log(event.target.value);
-        // SyntheticBaseEvent == js의 최적화된 event, nativeEvent는 따로
-
         setAmount(event.target.value);
       };
 
@@ -29,10 +28,9 @@
 
       return (
         <div>
-          <h1 className="hi">Super Converter</h1>
           <label htmlFor="minutes">Minutes</label>
           <input
-            value={inverted ? amount * 60 : amount}
+            value={inverted ? (amount * 60) : amount}
             id="minutes"
             type="number"
             placeholder="Minutes"
@@ -50,6 +48,75 @@
           />
           <button onClick={reset}>Reset</button>
           <button onClick={onInverted}>{inverted ? "Turn back": "Invert"}</button>
+        </div>
+      );
+    }
+
+    // km to miles
+    function KmtoMiles() {
+      const [amount, setAmount] = React.useState(0);
+      const [inverted, setInverted] = React.useState(false);
+
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+
+      const reset = () => setAmount(0);
+      const onInverted = () => {
+        reset();
+        setInverted((current) => !current);
+      };
+
+      return (
+        <div>
+          <label htmlFor="km">Km</label>
+          <input
+            value={inverted ? (amount * 1.61) : amount}
+            id="km"
+            type="number"
+            placeholder="Km"
+            onChange={onChange}
+            disabled={inverted}
+          />
+          <label htmlFor="miles">Miles</label>
+          <input
+            value={inverted ? amount : (amount * 0.62137)}
+            id="miles"
+            type="number"
+            placeholder="Miles"
+            onChange={onChange}
+            disabled={!inverted}
+          />
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInverted}>{inverted ? "Turn back": "Invert"}</button>
+        </div>
+      );
+    }
+
+    // 1. root div 렌더링 
+    // 2. 다른 2개의 comp 렌더링
+    function App() {
+      const [index, setIndex] = React.useState("-1");
+
+      const onSelect = (e) => {
+        setIndex(e.target.value);
+      };
+
+      console.log(`render w/ ${index}`)
+
+      return (
+        <div>
+          <h1>Units Converter</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="-1">Select your units</option>
+            <option value="0">Minutes to Hours</option>
+            <option value="1">Km to Miles</option>
+          </select>
+          <hr />
+          <br />
+          { index === "-1" ? "Please select your units" : null }
+          { index === "0" ? <MinutesToHours /> : null }
+          { index === "1" ? <KmtoMiles /> : null }
         </div>
       );
     }
