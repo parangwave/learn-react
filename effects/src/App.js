@@ -8,25 +8,12 @@ function App() {
   const onChange = (event) => setKeyword(event.target.value);
   console.log("i run all the time");
 
-  // const iRunOnlyOnce = () => {
-  //   console.log("i run only once.");
-  // }
-  // useEffect(iRunOnlyOnce, []);
-
-  // useEffect(() => {
-  //   console.log("CALL THE API");
-  // }, []);
-  // console.log("SEARCH FOR", keyword);
-  
-  // useEffect(() => {
-  //   if (keyword !== "" && keyword.length > 5) {
-  //     console.log("SEARCH FOR", keyword);
-  //   }
-  // }, [keyword]);
+  // useEffect = 언제 코드를 실행할 지 선택권을 줌
 
   useEffect(() => {
     console.log("I run only once.");
   }, []);
+  // [] = no dependency = first render, only once
 
   useEffect(() => {
     console.log("I run when 'keyword' changes.")
