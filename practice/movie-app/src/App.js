@@ -13,7 +13,7 @@ function App() {
             {/* react-router-dom v.5 */}
             {/* < Home /> */}
           </Route>
-          <Route path="/movie" element={<Detail/>}></Route>
+          <Route path="/movie/:id" element={<Detail/>}></Route>
           {/* </Switch> */}
         </Routes>
       </Router>
